@@ -16,4 +16,16 @@ db.exec(`
   )
 `);
 
+// Create messages table if it doesn't exist
+db.exec(`
+  CREATE TABLE IF NOT EXISTS messages (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER NOT NULL,
+    username TEXT NOT NULL,
+    content TEXT NOT NULL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+  )
+`);
+
 module.exports = db;
